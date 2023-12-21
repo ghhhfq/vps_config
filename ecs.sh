@@ -4276,24 +4276,6 @@ build_text() {
             if grep -q -- "---------------------磁盘fio读写测试--感谢yabs开源----------------------" "test_result.txt"; then
                 sed -i '/---------------------磁盘fio读写测试--感谢yabs开源----------------------/a Block Size | 4k            (IOPS) | 64k           (IOPS)' "test_result.txt"
             fi
-            shorturl=$(curl --ipv4 -sL -m 10 -X POST -H "Authorization: $ST" \
-                -H "Format: RANDOM" \
-                -H "Max-Views: 0" \
-                -H "UploadText: true" \
-                -H "Content-Type: multipart/form-data" \
-                -H "No-JSON: true" \
-                -F "file=@${myvar}/test_result.txt" \
-                "https://paste.spiritlhl.net/api/upload")
-            if [ $? -ne 0 ]; then
-                shorturl=$(curl --ipv6 -sL -m 10 -X POST -H "Authorization: $ST" \
-                    -H "Format: RANDOM" \
-                    -H "Max-Views: 0" \
-                    -H "UploadText: true" \
-                    -H "Content-Type: multipart/form-data" \
-                    -H "No-JSON: true" \
-                    -F "file=@${myvar}/test_result.txt" \
-                    "https://paste.spiritlhl.net/api/upload")
-            fi
         fi
     fi
 }
